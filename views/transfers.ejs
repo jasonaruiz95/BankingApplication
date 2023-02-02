@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Timings</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+</head>
+
+<body>
+<div>
+     <!-- SIDEBAR -->
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; display: inline; float: left; position: absolute;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4">Menu</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="../customer" class="nav-link" aria-current="page">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#customer"></use></svg>
+          Accounts
+        </a>
+      </li>
+      <li>
+        <a href="../transfers" class="nav-link link-dark active" >
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#transfer"></use></svg>
+          Transfer
+        </a>
+      </li>
+      <li>
+        <a href="../password" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+          Reset Password
+        </a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+<!-- END SIDEBAR -->
+
+<!-- Start Transfer Form -->
+  <div class="rounded d-flex justify-content-center p-2">
+    <h2 class="display-3 text-center text-primary">Ruiz Banking</h2>
+    <div class="container-fluid vh-100" style="margin-top:10px">
+      <div class="" style="margin-top:100px">
+        <div class="rounded d-flex justify-content-center">
+          <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+            <div class="text-center">
+              <h3 class="text-primary">Transfer</h3>
+            </div>
+            <form onSubmit="return checkPassword(event);" method="post">
+              <div class="p-4 text-center">
+                <div class="input-group mb-3">
+                  <span class="input-group-text bg-primary">
+                    <i class="bi bi-person-plus-fill text-white"></i>
+                  </span>
+                  <input id="accountID" name="accountID" type="text" class="form-control" placeholder="Account ID">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text bg-primary"><i class="bi bi-key-fill text-white"></i></span>
+                  <input id="memo"  type="text" class="form-control" placeholder="Enter Memo">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-primary"><i class="bi bi-key-fill text-white"></i></span>
+                    <input id="amount"  type="number" min="0.01" step="0.01" max="2500" class="form-control" placeholder="Amount">
+                  </div>    
+                <div>
+                  <p id="message" class="text-danger" style="height:25px; display: none">
+                    Problem Message Here
+                  </p>
+                </div>
+                <input type="hidden" id="hash" name="hash">
+                <input type="hidden" id="salt" name="salt">
+                <button class="btn btn-primary mt-2" type="submit">
+                  Send Money
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--   
+  <div class="rounded d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/'">Return to main</button>
+  </div>
+</div> -->
+  
+</body>
+
+</html>
