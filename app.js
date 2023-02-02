@@ -12,6 +12,9 @@ var adminRouter = require('./routes/admin');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var transferRouter = require('./routes/transfers');
+var passwordRouter = require('./routes/password');
+var transferHistoryRouter = require('./routes/transferHistory');
+
 
 var app = express();
 
@@ -34,6 +37,9 @@ app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/transfers', transferRouter);
+app.use('/password', passwordRouter);
+app.use('/transferHistory', transferHistoryRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
