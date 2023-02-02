@@ -14,7 +14,9 @@ var registerRouter = require('./routes/register');
 var transferRouter = require('./routes/transfers');
 var passwordRouter = require('./routes/password');
 var transferHistoryRouter = require('./routes/transferHistory');
-
+var employeeToolsRouter = require('./routes/employeeTools');
+var employeeTransferRouter = require('./routes/employeeTransfer');
+var employeeAccountsRouter = require('./routes/employeeAccounts');
 
 var app = express();
 
@@ -39,6 +41,9 @@ app.use('/register', registerRouter);
 app.use('/transfers', transferRouter);
 app.use('/password', passwordRouter);
 app.use('/transferHistory', transferHistoryRouter);
+app.use('/employeeTools', employeeToolsRouter);
+app.use('/employeeTransfer', employeeTransferRouter);
+app.use('/employeeAccounts', employeeAccountsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
