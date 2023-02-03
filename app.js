@@ -50,7 +50,7 @@ app.use('/employeeTransfer', employeeTransferRouter);
 app.use('/employeeAccounts', employeeAccountsRouter);
 app.use('/employeeCustomer', employeeCustomerRouter);
 app.use('/adminRoles', adminRolesRouter);
-app.use('/adminPasswordResetRouter', adminPasswordResetRouter);
+app.use('/adminPasswordReset', adminPasswordResetRouter);
 app.use('/employeeCustomerTransferHistory', employeeCustomerTransferHistoryRouter);
 app.use('/employeeTransferHistory', employeeTransferHistoryRouter);
 // catch 404 and forward to error handler
