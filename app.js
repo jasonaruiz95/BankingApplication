@@ -17,7 +17,11 @@ var transferHistoryRouter = require('./routes/transferHistory');
 var employeeToolsRouter = require('./routes/employeeTools');
 var employeeTransferRouter = require('./routes/employeeTransfer');
 var employeeAccountsRouter = require('./routes/employeeAccounts');
-
+var employeeCustomerRouter = require('./routes/employeeCustomer');
+var adminRolesRouter = require('./routes/adminRoles');
+var adminPasswordResetRouter = require('./routes/adminPasswordReset');
+var employeeCustomerTransferHistoryRouter = require('./routes/employeeCustomerTransferHistory');
+var employeeTransferHistoryRouter = require('./routes/employeeTransferHistory');
 var app = express();
 
 // view engine setup
@@ -29,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
+app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/")));
 app.use(express.static(path.join(__dirname, "node_modules/bootstrap-icons/")));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -44,7 +48,11 @@ app.use('/transferHistory', transferHistoryRouter);
 app.use('/employeeTools', employeeToolsRouter);
 app.use('/employeeTransfer', employeeTransferRouter);
 app.use('/employeeAccounts', employeeAccountsRouter);
-
+app.use('/employeeCustomer', employeeCustomerRouter);
+app.use('/adminRoles', adminRolesRouter);
+app.use('/adminPasswordResetRouter', adminPasswordResetRouter);
+app.use('/employeeCustomerTransferHistory', employeeCustomerTransferHistoryRouter);
+app.use('/employeeTransferHistory', employeeTransferHistoryRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
