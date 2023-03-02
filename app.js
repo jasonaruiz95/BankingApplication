@@ -38,24 +38,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, "node_modules/bootstrap/dist/")));
 app.use(express.static(path.join(__dirname, "node_modules/bootstrap-icons/")));
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/employee', employeeRouter);
-app.use('/customer', customerRouter);
-app.use('/admin', adminRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-app.use('/transfers', transferRouter);
-app.use('/password', passwordRouter);
-app.use('/transferHistory', transferHistoryRouter);
-app.use('/employeeTools', employeeToolsRouter);
-app.use('/employeeTransfer', employeeTransferRouter);
-app.use('/employeeAccounts', employeeAccountsRouter);
-app.use('/employeeCustomer', employeeCustomerRouter);
-app.use('/adminRoles', adminRolesRouter);
-app.use('/adminPasswordReset', adminPasswordResetRouter);
-app.use('/employeeCustomerTransferHistory', employeeCustomerTransferHistoryRouter);
-app.use('/employeeTransferHistory', employeeTransferHistoryRouter);
+app.use(express.static(path.join(__dirname, "node_modules/crypto-js/")))
+
 
 
 // Database setup
@@ -82,7 +66,24 @@ app.use(function(req, res, next) {
   next();
 });
 
-
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/employee', employeeRouter);
+app.use('/customer', customerRouter);
+app.use('/admin', adminRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/transfers', transferRouter);
+app.use('/password', passwordRouter);
+app.use('/transferHistory', transferHistoryRouter);
+app.use('/employeeTools', employeeToolsRouter);
+app.use('/employeeTransfer', employeeTransferRouter);
+app.use('/employeeAccounts', employeeAccountsRouter);
+app.use('/employeeCustomer', employeeCustomerRouter);
+app.use('/adminRoles', adminRolesRouter);
+app.use('/adminPasswordReset', adminPasswordResetRouter);
+app.use('/employeeCustomerTransferHistory', employeeCustomerTransferHistoryRouter);
+app.use('/employeeTransferHistory', employeeTransferHistoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
