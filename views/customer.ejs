@@ -64,7 +64,7 @@
     <div class="m-2" style="width: 400px; margin-left: auto;
     margin-right: auto; position: relative;">
       <h5 style="display: inline;">Checking</h1>
-        <p style="display: inline; float: right;">$100.25</p>
+        <p style="display: inline; float: right;"><%- locals.balanceChecking %></p>
     </div>
   </div>
 
@@ -83,62 +83,22 @@
             </tr>
           </thead>
           <tbody>
+            <% for(var i = 0; i < locals.topTenChecking.length; i++) { %>
               <tr>
                 <td>
-                  MCDONALDS
+                  <%- locals.topTenChecking[i].recipient %>
                 </td>
                 <td>
-                  $33.00
+                  $<%- locals.topTenChecking[i].amount %>
                 </td>
                 <td>
-                    1/29/2023
+                  <%- locals.topTenChecking[i].timestamp %>
                   </td>
                   <td>
-                    
+                    <%- locals.topTenChecking[i].memo %>
                   </td>
               </tr>
-              <tr>
-                <td>
-                  BWW
-                </td>
-                <td>
-                  $45.00
-                </td>
-                <td>
-                    1/30/2023
-                  </td>
-                  <td>
-                    
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  Target
-                </td>
-                <td>
-                  $123.21
-                </td>
-                <td>
-                    2/02/2023
-                  </td>
-                  <td>
-                    
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  Transfer to ZENDAYA
-                </td>
-                <td>
-                  $25.00
-                </td>
-                <td>
-                    2/07/2023
-                  </td>
-                  <td>
-                    Movie Tickets
-                  </td>
-              </tr>
+              <% }; %>
           </tbody>
         </table>
     </div>
@@ -148,7 +108,7 @@
     <div class="rounded d-flex justify-content-center p-2">
         <div class="m-2" style="width: 400px">
           <h5 style="display: inline;">Savings</h1>
-            <p style="display: inline; float: right;">$1243.65</p>
+            <p style="display: inline; float: right;"><%- locals.balanceSavings %></p>
         </div>
       </div>
       <div class="rounded d-flex justify-content-center">
@@ -166,202 +126,28 @@
                 </tr>
               </thead>
               <tbody>
+                <% for(var i = 0; i < locals.topTenSavings.length; i++) { %>
                   <tr>
                     <td>
-                      DEPOSIT IN BRANCH
+                      <%- locals.topTenSavings[i].recipient %>
                     </td>
                     <td>
-                      $243.00
+                      $<%-  locals.topTenSavings[i].amount %>
                     </td>
                     <td>
-                        1/15/2023
+                      <%- locals.topTenSavings[i].timestamp %>
                       </td>
                       <td>
-                        
+                        <%- locals.topTenSavings[i].memo %>
                       </td>
                   </tr>
-                  <tr>
-                    <td>
-                      DEPOSIT IN BRANCH
-                    </td>
-                    <td>
-                      $500.65
-                    </td>
-                    <td>
-                        1/24/2023
-                      </td>
-                      <td>
-                        
-                      </td>
-                  </tr>
+                  <% }; %>
               </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Personal Account -->
-<div class="rounded d-flex justify-content-center p-2">
-  <H2 class="">Family</H2>
-</div>
-<!-- START CHECKING -->
-  <div class="rounded d-flex justify-content-center p-2" >
-    
-    <div class="m-2" style="width: 400px; margin-left: auto;
-    margin-right: auto; position: relative;">
-      <h5 style="display: inline;">Checking</h1>
-        <p style="display: inline; float: right;">$10000.25</p>
-    </div>
-  </div>
 
-  <div class="rounded d-flex justify-content-center">
-    <div class="m-2" style="width: 400px">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th colspan="4">Recent Transactions</th>
-            </tr>
-            <tr>
-              <th scope="col">Transaction</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Date</th>
-              <th scope="col">Memo</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td>
-                  SMITHS
-                </td>
-                <td>
-                  $233.00
-                </td>
-                <td>
-                    1/22/2023
-                  </td>
-                  <td>
-                    
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  LONGHORN STEAKHOUSE
-                </td>
-                <td>
-                  $254.33
-                </td>
-                <td>
-                    1/29/2023
-                  </td>
-                  <td>
-                    
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  COMCAST
-                </td>
-                <td>
-                  $100.31
-                </td>
-                <td>
-                    2/01/2023
-                  </td>
-                  <td>
-                    
-                  </td>
-              </tr>
-              
-          </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- START SAVINGS -->
-    <div class="rounded d-flex justify-content-center p-2">
-        <div class="m-2" style="width: 400px">
-          <h5 style="display: inline;">Savings</h1>
-            <p style="display: inline; float: right;">$20543.65</p>
-        </div>
-      </div>
-      <div class="rounded d-flex justify-content-center">
-        <div class="m-2" style="width: 400px">
-            <table class="table table-striped table-hover">
-              <thead>
-                <tr>
-                  <th colspan="4">Recent Transactions</th>
-                </tr>
-                <tr>
-                  <th scope="col">Transaction</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Memo</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                    <td>
-                      DEPOSIT IN BRANCH
-                    </td>
-                    <td>
-                      $20043.00
-                    </td>
-                    <td>
-                        1/15/2023
-                      </td>
-                      <td>
-                        
-                      </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      DEPOSIT IN BRANCH
-                    </td>
-                    <td>
-                      $500.65
-                    </td>
-                    <td>
-                        1/24/2023
-                      </td>
-                      <td>
-                        
-                      </td>
-                  </tr>
-              </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- <div class="m-2" style="width: 400px">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th colspan="2">Top 10 Say Text Word</th>
-            </tr>
-            <tr>
-              <th scope="col">Username</th>
-              <th scope="col">Timing (ms)</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td>
-                  USERNAME
-                </td>
-                <td>
-                  TIMING
-                </td>
-              </tr>
-          </tbody>
-        </table>
-
-    </div> -->
-  </div>
-
-<!--   
-  <div class="rounded d-flex justify-content-center">
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/'">Return to main</button>
-  </div>
-</div> -->
   
 </body>
 
