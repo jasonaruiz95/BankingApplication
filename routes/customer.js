@@ -78,4 +78,14 @@ router.get('/', function(req, res, next) {
   renderTransactionsPage(req, res);
 });
 
+
+/* POST home page. */
+router.post('/', function(req, res, next) {
+  // transfer(req, res);
+
+
+
+  // res.render('transfers');
+});
+
 module.exports = router;
