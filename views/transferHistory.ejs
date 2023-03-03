@@ -5,7 +5,9 @@
   <title>Transfer History</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 </head>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+  
 <body>
 <div>
 
@@ -79,131 +81,28 @@
             </tr>
           </thead>
           <tbody>
+            <% for(var i =0; i < locals.topTentransfers.length; i++) { %>
               <tr>
                 <td>
-                  Transfer to BILLY MANNING
+                  <%- locals.topTentransfers[i].recipient %>
                 </td>
                 <td>
-                  $12.43
+                  <%- locals.topTentransfers[i].amount %>
                 </td>
                 <td>
-                    12/1/2023
+                  <%- locals.topTentransfers[i].timestamp %>
                   </td>
                   <td>
-                    PIZZA HUT
+                    <%- locals.topTentransfers[i].memo %>
                   </td>
               </tr>
-              <tr>
-                <td>
-                  Transfer to BRUCE WAYNE
-                </td>
-                <td>
-                  $50.00
-                </td>
-                <td>
-                    12/21/2023
-                  </td>
-                  <td>
-                    For hockey pads
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  Transfer to TOM HOLLAND
-                </td>
-                <td>
-                  $75.00
-                </td>
-                <td>
-                    12/25/2023
-                  </td>
-                  <td>
-                    Autograph
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  Transfer to ZENDAYA
-                </td>
-                <td>
-                  $25.00
-                </td>
-                <td>
-                    2/07/2023
-                  </td>
-                  <td>
-                    Movie Tickets
-                  </td>
-              </tr>
-          </tbody>
-        </table>
-        
-        <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th colspan="4">Inbound</th>
-              </tr>
-              <tr>
-                <th scope="col">Transaction</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Date</th>
-                <th scope="col">Memo</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td>
-                    Transfer from HANS ZIMMERMAN
-                  </td>
-                  <td>
-                    $331.00
-                  </td>
-                  <td>
-                      11/29/2022
-                    </td>
-                    <td>
-                      Piano Lessons
-                    </td>
-                </tr>
-                <tr>
-                  <td>
-                    Transfer from BILL MURRAY
-                  </td>
-                  <td>
-                    $2000.00
-                  </td>
-                  <td>
-                      11/20/2022
-                    </td>
-                    <td>
-                      No one will ever believe you...
-                    </td>
-                </tr>
-                <tr>
-                  <td>
-                    Transfer from RALPH MACCHIO
-                  </td>
-                  <td>
-                    $10.00
-                  </td>
-                  <td>
-                      1/01/2023
-                    </td>
-                    <td>
-                      Splitting a cab
-                    </td>
-                </tr>
+              <% }; %>
             </tbody>
           </table>
-    </div>
-</div>
-</div>
-<!--   
-  <div class="rounded d-flex justify-content-center">
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/'">Return to main</button>
+      </div>
   </div>
-</div> -->
-  
+</div>
+
 </body>
 
 </html>
