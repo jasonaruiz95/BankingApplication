@@ -9,10 +9,13 @@
   
   <script>
     function showAccountID(event, value){
-      if(value == 1)
-      document.getElementById('account_div').style.visibility = "visible";
+      if(value == 1){
+        document.getElementById('account_div').style.visibility = "visible";
+        document.getElementById('recipient_div').style.visibility = "visible";
+      }
       else{
         document.getElementById('account_div').style.visibility = "hidden";
+        document.getElementById('recipient_div').style.visibility = "hidden";
       }
     }
 
@@ -20,13 +23,9 @@
       //Get the accounts
       const fromAccount = document.getElementById("fromAccount").value;
       const toAccount = document.getElementById("toAccount").value;
-      // try {
-        const amount = parseInt(document.getElementById("amount").value);
-      // }
-      // catch (error)
-      // {
-      //   message = console.error();
-      // }
+      const amount = parseInt(document.getElementById("amount").value);
+      const recipient = document.getElementById("recipient").value;
+      const accountID = document.getElementById("accountID").value;
       
       let transferValid = false;
       // let transferExternal = false;
@@ -43,6 +42,12 @@
       else if(isNaN(amount))  {
         message = "Please specify amount"
       }
+      else if(accountID == "" && toAccount == "Other") {
+        message = "Please specify an account id"
+      }
+      else if(recipient == "" && toAccount == "Other") {
+        message = "Please specify a recipient"
+      }
       else {
         transferValid = true;
       }
@@ -50,9 +55,6 @@
       if(!transferValid) {
         document.getElementById("message").innerHTML = message;
         event.preventDefault();
-      }
-      else {
-        // document.getElementById("transferExternal").value = transferExternal;
       }
     }
 
@@ -87,12 +89,12 @@
           Transfer History
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="../password" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
           Reset Password
         </a>
-      </li>
+      </li> -->
       <li>
         <a href="../login" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
@@ -143,6 +145,10 @@
                 <div class="input-group mb-3" id="account_div" style="visibility: hidden;">
                   <span class="input-group-text bg-primary"><i class="bi bi-key-fill text-white"></i></span>
                   <input id="accountID" name="accountID" type="text" class="form-control" placeholder="Enter AccountID">
+                </div>
+                <div class="input-group mb-3" id="recipient_div" style="visibility: hidden;">
+                  <span class="input-group-text bg-primary"><i class="bi bi-person-plus-fill text-white"></i></span>
+                  <input id="recipient" name="recipient" type="text" class="form-control" placeholder="Recipient">
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text bg-primary"><i class="bi bi-key-fill text-white"></i></span>

@@ -37,12 +37,12 @@
           Transfer History
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="../password" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
           Reset Password
         </a>
-      </li>
+      </li> -->
       <li>
         <a href="../login" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
@@ -58,13 +58,7 @@
   </div>
 <!-- START CHECKING -->
 <div class="rounded d-flex justify-content-center p-2" >
-    
-    <!-- <div class="m-2" style="width: 400px; margin-left: auto;
-    margin-right: auto; position: relative;">
-      <h5 style="display: inline;">Transfers</h1>
-
-    </div> -->
-  </div>
+</div>
 
   <div class="rounded d-flex justify-content-center">
     <div class="m-2" style="width: 400px">
@@ -81,19 +75,19 @@
             </tr>
           </thead>
           <tbody>
-            <% for(var i =0; i < locals.topTentransfers.length; i++) { %>
+            <% for(var i =0; i < locals.topTenTransfersFrom.length; i++) { %>
               <tr>
                 <td>
-                  <%- locals.topTentransfers[i].recipient %>
+                  Transfer from: <%- locals.topTenTransfersFrom[i].recipient %>
                 </td>
                 <td>
-                  <%- locals.topTentransfers[i].amount %>
+                  $<%- locals.topTenTransfersFrom[i].amount %>
                 </td>
                 <td>
-                  <%- locals.topTentransfers[i].timestamp %>
+                  <%- locals.topTenTransfersFrom[i].timestamp %>
                   </td>
                   <td>
-                    <%- locals.topTentransfers[i].memo %>
+                    <%- locals.topTenTransfersFrom[i].memo %>
                   </td>
               </tr>
               <% }; %>
@@ -103,6 +97,47 @@
   </div>
 </div>
 
-</body>
+<!-- START Savings -->
+<div class="rounded d-flex justify-content-center p-2" >
+</div>
 
+  <div class="rounded d-flex justify-content-center">
+    <div class="m-2" style="width: 400px">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th colspan="4">Inbound</th>
+            </tr>
+            <tr>
+              <th scope="col">Transaction</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
+              <th scope="col">Memo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i =0; i < locals.topTenTransfersTo.length; i++) { %>
+              <tr>
+                <td>
+                  Transfer to: <%- locals.topTenTransfersTo[i].recipient %>
+                </td>
+                <td>
+                  $<%- locals.topTenTransfersTo[i].amount %>
+                </td>
+                <td>
+                  <%- locals.topTenTransfersTo[i].timestamp %>
+                  </td>
+                  <td>
+                    <%- locals.topTenTransfersTo[i].memo %>
+                  </td>
+              </tr>
+              <% }; %>
+            </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+
+</body>
 </html>

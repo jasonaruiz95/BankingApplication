@@ -6,15 +6,15 @@ function renderTransfersPage(req, res) {
   // Prepare results for the user page.  
   // 1) Get top ten transfers
   objForTransfersEJS = {}
-
+  const username = req.session.username;
+  let fromAccount;
+  let fromAccountID;
+  console.log("This is username:" + username);
 
   step1(res);
 
   function step1(res) {
-    const username = req.session.username;
-    let fromAccount;
-    let fromAccountID;
-    console.log("This is username:" + username);
+
 
     // Getting checking account id for user
     fromAccount = "Checking";
@@ -25,19 +25,39 @@ function renderTransfersPage(req, res) {
       }
       console.log("transfer.js: Getting account id");
       fromAccountID = rows[0][0]["account_id"];
-      // console.log("This is fromaccountid:" + fromAccountID);
+      console.log("This is fromaccountid:" + fromAccountID);
+      step2(res);
     });
 
-    //Getting top ten transfers from accountid
-    console.log("This is fromaccountid:" + fromAccountID);
-    sql = "CALL get_top_ten_transfers('" + fromAccountID +"')";
+    
+  
+    
+  }
+  //Getting top ten transfers from accountid and to accountid
+  function step2(res){
+    console.log("Starting get top ten transfers from account id");
+    console.log("This is from accountid:" + fromAccountID);
+    sql = "CALL get_top_ten_transfers_from('" + fromAccountID +"')";
     dbCon.query(sql, function(err,rows){
       if (err) {
         console.log(err.message);
         throw err;
       }
       console.log(rows);
-      objForTransfersEJS.topTentransfers = rows[0];
+      objForTransfersEJS.topTenTransfersFrom = rows[0];
+      // renderIt(res);
+    });
+
+    console.log("Starting get top ten transfers to account id");
+    console.log("This is toaccountid:" + fromAccountID);
+    sql = "CALL get_top_ten_transfers_to('" + fromAccountID +"')";
+    dbCon.query(sql, function(err,rows){
+      if (err) {
+        console.log(err.message);
+        throw err;
+      }
+      console.log(rows);
+      objForTransfersEJS.topTenTransfersTo = rows[0];
       renderIt(res);
     });
   }
