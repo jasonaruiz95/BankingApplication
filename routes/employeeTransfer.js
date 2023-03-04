@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var dbCon = require("../lib/database");
 
+let toAccountID;
+let balance;
 
 function renderCashTransfer(req, res) {
 const username = req.body.username;
@@ -9,8 +11,6 @@ const toAccount = req.body.toAccount;
 const amount = req.body.amount;
 const type = req.body.type;
 
-let toAccountID;
-let balance;
   //Check for valid account id
   //Check if deposit or withdraw
   // if withdraw, verify balance has enough
@@ -36,14 +36,12 @@ function step1(res) {
           }
           else {
               console.log("employeeAccounts.js: Credentials matched");
-              step2(res, function() {
-                step3(res);
-              });
+              step2(res);
           }
       });
   }
 
-function step2(res, _callback) {
+function step2(res) {
   //Getting Balance 
 sql = "CALL get_balance(?, ?)";
 dbCon.query(sql, [username, toAccount], function(err, rows) {
@@ -53,8 +51,8 @@ dbCon.query(sql, [username, toAccount], function(err, rows) {
   console.log("transfer.js: Getting balance");
   let balance = rows[0][0]["balance"];
 
-  _callback();
-  // step3(res);
+  // _callback();
+  step3(res);
 })};
 
 function step3(res){
