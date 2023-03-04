@@ -8,6 +8,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="font/bootstrap-icons.css" />
+
+  <script>
+    function checkRole(event) {
+      let proposedRole = document.getElementById("proposedRole").value;
+
+      if(proposedRole == "" || proposedRole == undefined){
+        event.preventDefault();
+        message = "Please select a role"
+        document.getElementById("message").innerText == message;
+      }
+    }
+
+    function checkUser(event) {
+    let username = document.getElementById("search").value;
+    if (username == "" || username == undefined) {
+        document.getElementById("message").innerHTML = "Please enter a username";
+        event.preventDefault();
+      }
+
+  }
+  </script>
 </head>
 
 <body>
@@ -43,14 +64,18 @@
     </div>
   <!-- END SIDEBAR -->
   <div class="rounded d-flex justify-content-center p-2">
-    <h1 class="display-3 text-center text-primary">Accounts</h1>
-    
+    <h1 class="display-3 text-center text-primary">Accounts</h1>  
   </div>
+
+  <!-- SEARCH BAR -->
   <div class="input-group justify-content-center" >
     <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="display: inline;">
+        <form class="form-inline" onsubmit="return checkUser(event);" method="post">
+          <input class="form-control mr-sm-2" id="search" name="search" type="search" placeholder="Search" aria-label="Search" value=""style="display: inline;">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+          <p id="message" name="message" class="text-danger" style="height:25px;">
+            <%- locals.message %>
+          </p>
         </form>
       </nav>
   </div>
@@ -68,45 +93,35 @@
             <tr>
               <th scope="col">Account ID</th>
               <th scope="col">Name</th>
-
+              <th scope="col">Current Role</th>
+              <th scope="col">Proposed Role</th>
             </tr>
           </thead>
+          <form onsubmit="return checkRole(event);" method="post">
           <tbody>
               <tr>
                 <td>
-                  12345
+                  <%- locals.role_info?.user_id %>
                 </td>
                 <td>
-                  <a href="../adminRoles">Dolly Parton</a> 
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  12346
+                  <%- locals.role_info?.Name %>
                 </td>
                 <td>
-                    <a href=""> Ben Kenobi</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  12347
+                  <%- locals.role_info?.role %>
                 </td>
                 <td>
-                   <a href=""> Hugh Jackman</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    12348
-                </td>
-                <td>
-                    <a href="">Creed Bratton</a>
-                    
+                  <select class="form-select" aria-label="type" name="proposedRole" id="proposedRole">
+                    <option value = "" selected>Type</option>
+                    <option value="CUSTOMER">Customer</option>
+                    <option value="EMPLOYEE">Employee</option>
+                    <option value="ADMIN">Admin</option>
+                  </select>
                 </td>
               </tr>
           </tbody>
         </table>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Submit</button>
+      </form>
     </div>
 </div>
 

@@ -41,6 +41,7 @@ function step2(res){
       throw err;
     }
     console.log(rows);
+    console.log("employeeAccounts.js: Checling Balance returned");
     objForUsersPage.balanceChecking = rows[0][0]["balance"];
   });
 
@@ -51,6 +52,7 @@ function step2(res){
       throw err;
     }
     console.log(rows);
+    console.log("employeeAccounts.js: Savings balance returned");
     objForUsersPage.balanceSavings = rows[0][0]["balance"];
     step3(res);
   }); 
@@ -58,23 +60,25 @@ function step2(res){
 
   //Get username transactions
   function step3(res) {
-    let sql = "CALL get_top_ten_transactions('" + req.session.username + "', 'Checking')";
+    let sql = "CALL get_top_ten_transactions('" + username + "', 'Checking')";
     dbCon.query(sql, function(err,rows){
       if (err) {
         console.log(err.message);
         throw err;
       }
       console.log(rows);
+      console.log("employeeAccounts.js: Checking Transactions returned.");
       objForUsersPage.topTenChecking = rows[0];
     });
     
-    sql = "CALL get_top_ten_transactions('" + req.session.username + "', 'Savings')";
+    sql = "CALL get_top_ten_transactions('" + username + "', 'Savings')";
     dbCon.query(sql, function(err,rows){
       if (err) {
         console.log(err.message);
         throw err;
       }
       console.log(rows);
+      console.log("employeeAccounts.js: Savings transactions returned.");
       objForUsersPage.topTenSavings = rows[0];
       renderIt(res);
     });
