@@ -2,21 +2,22 @@ var express = require('express');
 var router = express.Router();
 var dbCon = require("../lib/database");
 
-let toAccountID;
-let balance;
+
 
 function renderCashTransfer(req, res) {
 const username = req.body.username;
 const toAccount = req.body.toAccount;
 const amount = req.body.amount;
 const type = req.body.type;
+let toAccountID;
+let balance;
 
   //Check for valid account id
   //Check if deposit or withdraw
   // if withdraw, verify balance has enough
   //insert withdraw/deposit into cash transfer table
 
-    step1(res);
+  step1(res);
 
 
 
@@ -49,33 +50,38 @@ dbCon.query(sql, [username, toAccount], function(err, rows) {
     throw err
   }
   console.log("transfer.js: Getting balance");
-  let balance = rows[0][0]["balance"];
-
-  // _callback();
+  balance = rows[0][0]["balance"];
+  console.log("employeeTransfer.js: This is balance: " + balance);
   step3(res);
 })};
 
 function step3(res){
-   //Getting account id
-   sql = "CALL get_account_id(?, ?)";
-   dbCon.query(sql, [username, toAccount], function(err, rows) {
-     if (err) {
-       throw err
-     }
-     console.log("transfer.js: Getting account id");
-     let toAccountID = rows[0][0]["account_id"];
-     console.log("This is to accountid:" + toAccountID);
-     // step3(res);
-   });
+//Getting account id
+sql = "CALL get_account_id(?, ?)";
+dbCon.query(sql, [username, toAccount], function(err, rows) {
+  if (err) {
+    throw err
+  }
+  console.log("employeeTransfer.js: Getting account id");
+  toAccountID = rows[0][0]["account_id"];
+  console.log("This is to accountid:" + toAccountID);
+  step4(res);
+});
+};
+
+function step4(res){
+   
 
 
   //Checking for sufficient funds
+  console.log("employeeTransfer.js: This is type: " + type);
+  console.log("employeeTransfer.js: This is balance inside step 3: " + balance);
 if(balance < amount && type == "WITHDRAW") {
  console.log("transfer.js: insufficient funds for transfer");
- message = "Insufficient Balance";
- res.render('employeeTransfer', message);
+ res.render('employeeTransfer', {message: "Insufficient Balance"});
 }
 else{
+  console.log("This is to accountid inside step3:" + toAccountID);
  // Enough funds, initiate transfer
    sql = "CALL insert_cash_transfer(?, ?, ?)";
    dbCon.query(sql, [amount, type, toAccountID], function(err, rows) {
@@ -83,8 +89,7 @@ else{
        throw err
      }
    console.log("employeeTransfer.js: Transfer completed");
-   message = "Transfer Completed"
-   res.render('employeeTransfer', message);
+   res.render('employeeTransfer', {message: "Transfer Completed"});
    }
 )};
 }
@@ -97,7 +102,7 @@ router.get('/', function(req, res, next) {
   res.render('employeeTransfer');
 });
 
-/* GET home page. */
+/* POST home page. */
 router.post('/', function(req, res, next) {
 
 renderCashTransfer(req, res);
