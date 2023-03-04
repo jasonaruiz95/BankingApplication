@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
           else {
               console.log("loginuser.js: Credentials matched");
               req.session.loggedIn = true;
-              res.redirect("/customer");
+              res.redirect("/");
           }
       });
   }
