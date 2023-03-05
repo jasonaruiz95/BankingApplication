@@ -93,6 +93,10 @@ function renderIt(res) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  if (!req.session || !req.session.loggedIn || req.session.user_type_id != 2) {
+    console.log("survey.js: redirecting to /");
+    res.redirect("/");
+}
   res.render('employeeAccounts', {
     objForUsersPage
   });

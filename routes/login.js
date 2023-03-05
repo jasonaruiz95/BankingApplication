@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
           else {
               console.log("loginuser.js: Credentials matched");
               req.session.loggedIn = true;
-              res.redirect("/");
+              res.redirect("customer");
           }
       });
   }
@@ -47,14 +47,27 @@ router.post('/', function(req, res, next) {
               console.log("loginuser: No results found");
               res.render('login', {message: "User '" + username + "' not found"});
           } else {
-              const salt = results[0][0].salt;
-              req.session.username = username;
-              req.session.salt = salt;
-              req.session.education_type = results[0][0].education_type;
-              res.render('loginpassword', {
-                  username: username,
-                  salt: salt
-              });
+            let sql = "CALL get_user_type_id(?)";
+            dbCon.query(sql, [username], function(err, rows) {
+                if (err) {
+                    throw err;
+                }
+                console.log("login.js: user type returned.")
+                
+                const user_type_id = rows[0][0]["user_type_id"];
+                console.log("This is user type id: " + user_type_id);
+            
+                const salt = results[0][0].salt;
+                req.session.username = username;
+                req.session.salt = salt;
+                req.session.user_type_id = user_type_id;
+                console.log("This is user session type id: " + user_type_id);
+
+                res.render('loginpassword', {
+                    username: username,
+                    salt: salt
+                });
+            });
           }
       });
   }

@@ -73,17 +73,11 @@ function renderTransfersPage(req, res) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // res.render('transferHistory');
+  if (!req.session || !req.session.loggedIn) {
+    console.log("customer.js: redirecting to /");
+    res.redirect("/");
+}
   renderTransfersPage(req, res);
-});
-
-/* POST home page. */
-router.post('/', function(req, res, next) {
-  // transfer(req, res);
-
-
-
-  // res.render('transfers');
 });
 
 

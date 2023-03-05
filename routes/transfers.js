@@ -102,6 +102,11 @@ function transfer(req, res){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  if (!req.session || !req.session.loggedIn) {
+    console.log("customer.js: redirecting to /");
+    res.redirect("/");
+}
+
   res.render('transfers');
 });
 
