@@ -75,6 +75,10 @@ function renderTransactionsPage(req, res) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // res.render('customer');
+  if (!req.session || !req.session.loggedIn) {
+    console.log("customer.js: redirecting to /");
+    res.redirect("/");
+}
   renderTransactionsPage(req, res);
 });
 
