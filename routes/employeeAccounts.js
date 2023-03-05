@@ -95,7 +95,7 @@ function renderIt(res) {
 router.get('/', function(req, res, next) {
   if (!req.session || !req.session.loggedIn || req.session.user_type_id != 2) {
     console.log("survey.js: redirecting to /");
-    res.redirect("/");
+    res.redirect("login");
 }
   res.render('employeeAccounts', {
     objForUsersPage

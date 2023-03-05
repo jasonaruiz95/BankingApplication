@@ -92,6 +92,11 @@ function renderRoleChangePage(req, res) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  if (!req.session || !req.session.loggedIn || req.session.user_type_id != 3) {
+    console.log("survey.js: redirecting to /");
+    res.redirect("login");
+}
+
   res.render('admin');
 });
 
