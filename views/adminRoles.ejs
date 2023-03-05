@@ -54,44 +54,23 @@
             <div class="text-center">
               <h3 class="text-primary display-3 text-center ">Role Change</h3>
             </div>
-            <form onSubmit="return checkPassword(event);" method="post">
+
               <div class="p-4 text-center">
-                <!-- <div class="input-group mb-3">
-                  <span class="input-group-text bg-primary">
-                    <i class="bi bi-person-plus-fill text-white"></i>
-                  </span>
-                  <input id="accountID" name="accountID" type="text" class="form-control" placeholder="Account ID">
-                </div> -->
                 <div class="input-group mb-3">
-                    <select class="form-select" aria-label="Default select example" name="" id="">
-                    <option selected>Select Role</option>
-                    <option value="1">Customer</option>
-                    <option value="2">Employee</option>
-                    <option value="3">Admin</option>
                 </select>
                   </div>
-                  <p id="message" class="text-danger" style="height:25px; display: none">
-                    Problem Message Here
+                  <p id="message" class="text-danger" style="height:25px;">
+                    <%- locals.message %>
                   </p>
-                </div>
-                <input type="hidden" id="hash" name="hash">
-                <input type="hidden" id="salt" name="salt">
-                <button class="btn btn-primary mt-2" type="submit">
-                  Submit Change
-                </button>
+
               </div>
-            </form>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 
-<!--   
-  <div class="rounded d-flex justify-content-center">
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/'">Return to main</button>
-  </div>
-</div> -->
   
 </body>
 

@@ -11,12 +11,11 @@
 
   <script>
     function checkRole(event) {
-      let proposedRole = document.getElementById("proposedRole").value;
-
+   
       if(proposedRole == "" || proposedRole == undefined){
         event.preventDefault();
         message = "Please select a role"
-        document.getElementById("message").innerText == message;
+        document.getElementById("message").innerHTML = message;
       }
     }
 
@@ -97,17 +96,18 @@
               <th scope="col">Proposed Role</th>
             </tr>
           </thead>
-          <form onsubmit="return checkRole(event);" method="post">
+          <form id= "formForRoleChange" action="/adminRoles" onsubmit="return checkRole(event);" method="post">
           <tbody>
               <tr>
-                <td>
-                  <%- locals.role_info?.user_id %>
+                <% if(locals.roleInfo !== undefined) {%>
+                <td id="user_id" name="user_id" value="">
+                  <%- locals.roleInfo[0].user_id %>
                 </td>
                 <td>
-                  <%- locals.role_info?.Name %>
+                  <%- locals.roleInfo[0].Name %>
                 </td>
-                <td>
-                  <%- locals.role_info?.role %>
+                <td id="role" name="role" value="">
+                  <%- locals.roleInfo[0].Role %>
                 </td>
                 <td>
                   <select class="form-select" aria-label="type" name="proposedRole" id="proposedRole">
@@ -116,7 +116,9 @@
                     <option value="EMPLOYEE">Employee</option>
                     <option value="ADMIN">Admin</option>
                   </select>
+                  <input type="hidden" id="postUser_ID" name="postUser_ID" value="<%- locals.roleInfo[0].user_id %>">
                 </td>
+                <% }; %>
               </tr>
           </tbody>
         </table>
@@ -125,38 +127,8 @@
     </div>
 </div>
 
-
-    <!-- <div class="m-2" style="width: 400px">
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th colspan="2">Top 10 Say Text Word</th>
-            </tr>
-            <tr>
-              <th scope="col">Username</th>
-              <th scope="col">Timing (ms)</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td>
-                  USERNAME
-                </td>
-                <td>
-                  TIMING
-                </td>
-              </tr>
-          </tbody>
-        </table>
-
-    </div> -->
   </div>
 
-<!--   
-  <div class="rounded d-flex justify-content-center">
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/'">Return to main</button>
-  </div>
-</div> -->
   
 </body>
 
